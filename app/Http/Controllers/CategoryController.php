@@ -101,6 +101,6 @@ class CategoryController extends Controller
         if($category->delete()){
             Session::flash('message','Category Deleted Successfully!');
         }
-        return redirect()->to('products');
+        return redirect()->to('categories');
     }
 }

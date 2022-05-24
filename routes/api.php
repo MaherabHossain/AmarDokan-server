@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\ProductController;
 use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,13 +17,22 @@ use App\Http\Controllers\OrderController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+// users
+Route::resource('user', UserController::class);
+Route::post('user/login', [UserController::class,'login'] )->name('login');
 
+
+Route::middleware([ 'auth:sanctum'])->group(function () {
+    // products
 Route::prefix('products')->group(function () {
     Route::get('/',     [ProductController::class,'index']);
 });
+// categories
 Route::prefix('categories')->group(function () {
     Route::get('/',     [CategoryController::class,'index']);
 });
-
+// order
 Route::post('order', [OrderController::class,'store']);
 Route::get('order',[OrderController::class,'index']);
+Route::post('user/logout', [UserController::class,'logout'] );
+});
