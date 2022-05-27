@@ -17,19 +17,25 @@ use App\Http\Controllers\UserController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+
 // users
 Route::resource('user', UserController::class);
 Route::post('user/login', [UserController::class,'login'] )->name('login');
 
 
 Route::middleware([ 'auth:sanctum'])->group(function () {
+ 
     // products
 Route::prefix('products')->group(function () {
+    
     Route::get('/',     [ProductController::class,'index']);
+    Route::get('/{id}', [CategoryController::class,'categoryProduct']);
 });
 // categories
 Route::prefix('categories')->group(function () {
     Route::get('/',     [CategoryController::class,'index']);
+    Route::get('/{id}',     [CategoryController::class,'categoryProduct']);
 });
 // order
 Route::post('order', [OrderController::class,'store']);
