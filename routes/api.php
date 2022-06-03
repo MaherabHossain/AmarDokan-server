@@ -39,6 +39,6 @@ Route::prefix('categories')->group(function () {
 });
 // order
 Route::post('order', [OrderController::class,'store']);
-Route::get('order',[OrderController::class,'index']);
+Route::get('order',[OrderController::class,'singleOrder']);
 Route::post('user/logout', [UserController::class,'logout'] );
 });

@@ -86,14 +86,11 @@
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                       <i class="fa fa-edit"></i>
-                      <span>Reports</span>
+                      <span>Orders</span>
                     </a>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                       <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Sale</a>
-                        <a class="collapse-item" href="#">Purchase</a>
-                        <a class="collapse-item" href="#">Payment</a>
-                        <a class="collapse-item" href="#">Receipt</a>
+                        <a class="collapse-item" href="{{ route('orders') }}">Orders</a>
                       </div>
                     </div>
                 </li>

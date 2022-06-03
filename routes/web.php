@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Ordercontroller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +28,12 @@ Route::prefix('categories')->group(function () {
     Route::delete('/{id}',       [CategoryController::class,'destroy'])->name('category.delete');
     Route::get('/{id}',       [CategoryController::class,'edit'])->name('category.edit');
     Route::put('/{id}',       [CategoryController::class,'update'])->name('category.update');
+    
+
 
 });
-
+Route::get('orders', [OrderController::class,'index'])->name('orders');
+Route::get('orders/{id}', [OrderController::class,'show'])->name('orders.show');
+Route::delete('orders/{id}', [OrderController::class,'destroy'])->name('orders.delete');
+Route::put('orders/{id}', [OrderController::class,'update'])->name('orders.edit');
 Route::resource('products', ProductController::class);
