@@ -27,7 +27,7 @@ class UserController extends Controller
         }else{
             $user = User::where('email',$request->email)->first();
             $token = $user->createToken('authToken')->plainTextToken;
-            return response()->json(['message'=>"log in successfully!",'token'=>$token],200 );
+            return response()->json(['message'=>"log in successfully!",'token'=>$token,'name'=>$user->name,'email'=>$user->email],200 );
 
 
         }
@@ -39,8 +39,12 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
-        return response()->json(['message'=>"logout successfully!",],200 );
+        if($request->user()->currentAccessToken()->delete()){
+            return response()->json(['message'=>"logout successfully!",],200 );
+        }else{
+            return response()->json(['error'=>"server side error!!",],500 );
+        }
+       
     }
 
     /**

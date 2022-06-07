@@ -22,6 +22,7 @@ use App\Http\Controllers\UserController;
 // users
 Route::resource('user', UserController::class);
 Route::post('user/login', [UserController::class,'login'] )->name('login');
+Route::get('user/logout', [UserController::class,'logout'] )->name('logout');
 
 
 Route::middleware([ 'auth:sanctum'])->group(function () {
