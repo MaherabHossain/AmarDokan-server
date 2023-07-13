@@ -27,7 +27,16 @@ class UserController extends Controller
         }else{
             $user = User::where('email',$request->email)->first();
             $token = $user->createToken('authToken')->plainTextToken;
-            return response()->json(['message'=>"log in successfully!",'token'=>$token,'name'=>$user->name,'email'=>$user->email],200 );
+            return response()->json([
+                'success'=>true,
+                'message'=>"log in successfully!",
+                'data'=>[
+                    'id'=>$user->id,
+                'name'=>$user->name,
+                'email'=>$user->email,
+                'token'=>$token
+                ]
+            ],200 );
 
 
         }
@@ -74,12 +83,16 @@ class UserController extends Controller
          
         if($request->name && $request->email && $request->password){
            if(User::create($formData)){
-            return response()->json(['messsage'=>"user created successfully"],200 );
+            return response()->json(['success'=>true,'messsage'=>"user created successfully",
+             'data'=>[
+            'name'=>$request->name,
+            "email"=>$request->email
+        ]]  ,200 );
            }else{
-            return response()->json(['error'=>"server side problem!"],403 );
+            return response()->json(['success'=>false],403 );
            }
         }else{
-            return response()->json(['error'=>"validation error"],400 );
+            return response()->json(['success'=>false],400 );
         }
     }
 

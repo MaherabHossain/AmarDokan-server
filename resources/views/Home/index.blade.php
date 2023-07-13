@@ -4,7 +4,7 @@
 
 @section('content')
     <div>
-        <h2>Hello</h2>
+        <h2>Welcome to dashboard</h2>
 </div>
 
 @stop

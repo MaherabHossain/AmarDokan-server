@@ -1,11 +1,11 @@
 @extends('layout.app')
 
-@section('tittle','Catagories')
+@section('tittle','Products')
 
 @section('content')
 <div class="row clearfix mb-4">
 	<div class="col-md-6">
-	<h3>Category List</h3>	
+	<h3>Product List</h3>	
 	</div>
 	<div class="col-md-6 text-right">
     <div>
@@ -17,7 +17,7 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-    	<h6 class="m-0 font-weight-bold text-primary">Users</h6>
+    	<h6 class="m-0 font-weight-bold text-primary">Products</h6>
     </div>
     <div class="card-body">
          @if(session('message'))
@@ -32,10 +32,8 @@
                         <th>ID</th>
                         <th>Image</th>
                         <th>product name</th>
-                        <th>product Category</th>
+                    
                         <th>Product price</th>
-                        <th>Product discount</th>
-                        <th>Main price</th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </thead>
@@ -44,10 +42,9 @@
                         <th>ID</th>
                         <th>Image</th>
                         <th>product name</th>
-                        <th>product Category</th>
+                   
                         <th>Product price</th>
-                        <th>Product discount</th>
-                        <th>Main price</th>
+                        
                         <th class="text-right">Actions</th>
                     </tr>
                 </tfoot>
@@ -60,13 +57,12 @@
                         <td>{{ $product->id }}</td>
                         <td><img src="{{asset($imgURL)}}" alt=""style="height:50px;"></td>
                         <td>{{ $product->name}}</td>
-                        <td>{{ $product->category->name }}</td>
+
                         <td>{{ $product->price}}</td>
-                        <td>{{ $product->discount}}</td>
-                        <td>{{ $product->price-(($product->discount*$product->price)/100) }}</td>
+                        
                         <td class="text-right">
                         {!! Form::open(['url' => 'products/'.$product->id,'method'=>'delete']) !!}
-                           <a href="{{ route('products.edit',['product'=>$product->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                           <!-- <a href="{{ route('products.edit',['product'=>$product->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a> -->
                         	<button onclick="return confirm('Are you sure')" class="btn btn-danger mb-1 btn-sm"> <i class="fa fa-trash"></i> </button>
                         </form>
                         </td>

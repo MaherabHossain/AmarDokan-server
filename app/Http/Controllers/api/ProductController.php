@@ -9,7 +9,15 @@ class ProductController extends Controller
 {
     public function index(){
         $products = Product::all();
-        return  response($products);
+        $response = array(
+            "success" => true,
+            "data" => $products
+        );
+        
+        // Convert the PHP array to JSON
+        $jsonResponse = json_encode($response);
+
+        return  response($jsonResponse);
 
     }
 }
